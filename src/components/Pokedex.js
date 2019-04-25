@@ -10,7 +10,6 @@ export default class Pokedex extends Component {
       classFilter: ''
     },
     isLoaded: false,
-    chosenPokemon: '1'
   }
 
   setFilter = (text) => {
@@ -31,6 +30,7 @@ export default class Pokedex extends Component {
   render() {
     return (
       <div className="pokedex">
+        
         <PokemonList
           pokemon={this.state.pokemon}
           filter={this.state.filter}

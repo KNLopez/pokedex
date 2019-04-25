@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import PokemonViewerStats from './PokemonViewerStats'
 export default class PokemonViewer extends Component {
   state = {
     pokemon: {},
@@ -13,7 +13,9 @@ export default class PokemonViewer extends Component {
       fetch('https://pokeapi.co/api/v2/pokemon/' + this.props.pokeId)
       .then( pokemon => pokemon.json())
       .then(
-        pokemon => this.setState({ pokemon: pokemon, isLoaded: true }),
+        pokemon => {this.setState({ pokemon: pokemon, isLoaded: true })
+        console.log(this.state.pokemon.stats[0])
+        },
         error => console.log(error)
       )
     } else {
@@ -33,16 +35,34 @@ export default class PokemonViewer extends Component {
 
   componentDidMount(){
     console.log('mounted')
+    
     // this.setState({
     //   pokeId: this.props.pokeId
     // })
   }
-
+ 
 
   render() {
+    let statBars, typeSpan
+    if(this.state.isLoaded){
+      statBars = this.state.pokemon.stats.map(stat => (
+        <PokemonViewerStats stat={stat}/>
+      ))
+      typeSpan = this.state.pokemon.types.map(type => (
+        <span className={type.type.name}>{type.type.name}</span>
+      ))
+    }
+    
     return (
-      <div>
-        { this.state.isLoaded ? this.state.pokemon.name : 'not-loaded'}
+      <div className="pokemon-viewer">
+        { this.state.isLoaded ? 
+          <div className="pokemon-details-container">
+            <img alt={this.state.pokemon.name} src={this.state.pokemon.sprites.front_default} />
+            <h3>{this.state.pokemon.name}</h3>
+            <div className="type-container">{typeSpan}</div>
+            {statBars} 
+          </div>
+          : 'Choose a Pokemon'}
       </div>
     )
   }
