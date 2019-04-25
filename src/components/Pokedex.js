@@ -5,40 +5,35 @@ import PokedexControls from './PokedexControls'
 
 export default class Pokedex extends Component {
   state = {
-    filter: {
-      searchText: '',
-      classFilter: ''
-    },
     isLoaded: false,
-  }
-
-  setFilter = (text) => {
-    this.setState({
-      filter: {
-        ...this.state.filter, searchText: text
-      }
-    })
+    translate: 0
   }
 
   choosePokemon = (val) => {
-    console.log(val)
-      this.setState({
-        chosenPokemon: val
-      })
+    this.setState({
+      chosenPokemon: val
+    })
+  }
+
+  setTranslate = (translate) => {
+    console.log('pokedex' + translate)
+     this.setState({
+      translate: translate
+    })
   }
 
   render() {
     return (
       <div className="pokedex">
-        
+        {/* <PokedexHeader /> */}
         <PokemonList
           pokemon={this.state.pokemon}
-          filter={this.state.filter}
-          choosePokemon={(val) => this.choosePokemon(val)}/>
+          choosePokemon={(val) => this.choosePokemon(val)}
+          translate={this.state.translate}/>
         <PokemonViewer
           pokeId={this.state.chosenPokemon}
           />
-        <PokedexControls filter={(text)=>this.setFilter(text)}/>
+        <PokedexControls setTranslate={(translate)=> this.setTranslate(translate)}/>
       </div>
     )
   }

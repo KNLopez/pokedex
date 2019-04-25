@@ -30,7 +30,7 @@ export default class PokemonList extends Component {
 
     return (
       <div className="pokemon-list">
-        <div className="pokemon-list__container">
+        <div style={{transform: `translateY(${this.props.translate}px)`}} className="pokemon-list__container">
           { this.state.isLoaded? pokeList : <div className="Loading">Loading</div>}
         </div>
       </div>

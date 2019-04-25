@@ -35,24 +35,23 @@ export default class PokemonViewer extends Component {
 
   componentDidMount(){
     console.log('mounted')
-    
     // this.setState({
     //   pokeId: this.props.pokeId
     // })
   }
- 
+
 
   render() {
     let statBars, typeSpan
     if(this.state.isLoaded){
-      statBars = this.state.pokemon.stats.map(stat => (
-        <PokemonViewerStats stat={stat}/>
+      statBars = this.state.pokemon.stats.map((stat,i) => (
+        <PokemonViewerStats key={i} stat={stat}/>
       ))
-      typeSpan = this.state.pokemon.types.map(type => (
-        <span className={type.type.name}>{type.type.name}</span>
+      typeSpan = this.state.pokemon.types.map((type,i) => (
+        <span key={i} className={type.type.name}>{type.type.name}</span>
       ))
     }
-    
+
     return (
       <div className="pokemon-viewer">
         { this.state.isLoaded ? 

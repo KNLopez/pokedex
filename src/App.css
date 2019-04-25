@@ -33,7 +33,10 @@
 .pokemon-list {
   overflow: hidden;
   flex: 1;
-  padding-right: 20px;
+  margin-right: 20px;
+  height: 395px;
+  background: white;
+  border-radius: 5px;
 }
 
 .pokemon-list__container {
@@ -42,9 +45,6 @@
   grid-template-columns: repeat(2,1fr);
   transition: all .3s ease-in;
   background: white;
-  border-radius: 5px;
-  overflow: hidden;
-  height: 395px;
 }
 
 .pokemon {
@@ -126,6 +126,54 @@ span.water {
   background: rgb(34, 21, 156);
 }
 
+span.dark {
+  background: rgb(6, 5, 17);
+}
+
+span.dragon {
+  background: rgb(3, 132, 184);
+}
+
+span.electric {
+  background: rgb(218, 204, 15);
+}
+
+span.fairy {
+  background: rgb(133, 7, 76);
+}
+
+span.fighting {
+  background: rgb(168, 83, 13);
+}
+
+span.ghost {
+  background: rgb(32, 17, 73);
+}
+
+span.ground {
+  background: rgb(167, 124, 46);
+}
+
+span.ice {
+  background: rgb(149, 207, 255);
+}
+
+span.normal {
+  background: #75515B;
+}
+
+span.psychic {
+  background: #A4296C;
+}
+
+span.rock {
+  background: #48180A;
+}
+
+span.steel {
+  background: #5F756D;
+}
+
 
 .attribute {
   background: #1abc9c;
@@ -158,3 +206,55 @@ span.water {
   margin-bottom: 5px;
   background: rgb(204, 212, 158);
 }
+
+
+/* //controls */
+.pokedex-controls {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50%;
+  display: flex;
+}
+.triangle {
+  cursor: pointer;
+  margin: 0 50px;
+	position: relative;
+	background-color: orange;
+	text-align: left;
+}
+.triangle:before,
+.triangle:after {
+	content: '';
+	position: absolute;
+	background-color: inherit;
+}
+.triangle,
+.triangle:before,
+.triangle:after {
+	width:  30px;
+	height: 30px;
+	border-top-right-radius: 30%;
+}
+
+.triangle {
+	transform: rotate(-180deg) skewX(-30deg) scale(1,.866) translate(-250%, 70%);
+}
+.triangle:before {
+	transform: rotate(-135deg) skewX(-45deg) scale(1.414,.707) translate(0,-50%);
+}
+.triangle:after {
+	transform: rotate(135deg) skewY(-45deg) scale(.707,1.414) translate(50%);
+}
+
+.triangle.down {
+	transform: rotate(-120deg) skewX(-30deg) scale(1,.866) translate(160%,150%);
+}
+.triangle.down:before {
+	transform: rotate(-135deg) skewX(-45deg) scale(1.414,.707) translate(0,-50%);
+}
+.triangle.down:after {
+	transform: rotate(135deg) skewY(-45deg) scale(.707,1.414) translate(50%);
+}
+
+
