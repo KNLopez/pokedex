@@ -1,6 +1,17 @@
-.pokemon-list {
-  max-width: 1100px;
+.pokemon-list__container {
+  max-width: 300px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4,1fr)
+  grid-template-columns: repeat(2,1fr);
+  transform: translateY( -198px );
+  transition: all .3s ease-in;
+}
+
+.pokemon-list__container:hover{
+  transform: translateY( 0 )
+}
+
+.pokemon-list {
+  max-height: 495px;
+  overflow: hidden;
 }

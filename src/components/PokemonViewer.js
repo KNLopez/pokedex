@@ -6,21 +6,26 @@ export default class PokemonViewer extends Component {
     isLoaded: false
   }
 
-  componentDidUpdate(prevProps, prevState){
+  componentDidUpdate(prevProps,prevState){
+    console.log('component updated')
     if (prevState.pokemon === this.state.pokemon) {
+      console.log('component update if equal to prevent infinite loop')
       fetch('https://pokeapi.co/api/v2/pokemon/' + this.props.pokeId)
       .then( pokemon => pokemon.json())
-      .then( (pokemon) =>{
-        this.setState({
-          pokemon: pokemon,
-          isLoaded: true
-        })
-        console.log(this.state.pokemon)
-      }
-      ).catch(error => {
-        console.log(error)
-      })
+      .then(
+        pokemon => this.setState({ pokemon: pokemon, isLoaded: true }),
+        error => console.log(error)
+      )
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState){
+    console.log('Should component update')
+    if (nextProps.pokemon === this.state.pokemon) {
+      console.log('Should component false')
+      return false
+    }
+    return true
   }
 
 
