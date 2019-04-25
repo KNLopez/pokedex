@@ -6,12 +6,16 @@
   transform: translateY( -198px );
   transition: all .3s ease-in;
 }
-
+/* 
 .pokemon-list__container:hover{
   transform: translateY( 0 )
-}
+} */
 
 .pokemon-list {
   max-height: 495px;
   overflow: hidden;
+}
+
+.pokemon {
+  cursor: pointer;
 }

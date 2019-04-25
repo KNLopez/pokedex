@@ -21,24 +21,24 @@ export default class Pokedex extends Component {
     })
   }
 
-  choosePokemon = (e) => {
-    if(e.target.value !== ''){
+  choosePokemon = (val) => {
+    console.log(val)
+    console.log('clicked')
       this.setState({
-        chosenPokemon: e.target.value
+        chosenPokemon: val
       })
-    }
-    console.log(this.state.chosenPokemon)
   }
 
   render() {
     return (
       <div className="pokedex">
-        <input onChange={(e) => this.choosePokemon(e)}/>
         <PokemonList
           pokemon={this.state.pokemon}
-          filter={this.state.filter}/>
+          filter={this.state.filter}
+          choosePokemon={(val) => this.choosePokemon(val)}/>
         <PokemonViewer
-          pokeId={this.state.chosenPokemon}/>
+          pokeId={this.state.chosenPokemon}
+          />
         <PokedexControls filter={(text)=>this.setFilter(text)}/>
       </div>
     )

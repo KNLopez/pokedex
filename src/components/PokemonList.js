@@ -25,7 +25,7 @@ export default class PokemonList extends Component {
   render ()  {
 
     const pokeList = this.state.pokemon.map((pokemon,i) => (
-      <PokemonCell key={pokemon.name} name={pokemon.name} id={i + 1} url={pokemon.url}/>
+      <PokemonCell choosePokemon={(val)=>this.props.choosePokemon(val)} key={pokemon.name} name={pokemon.name} id={i + 1} url={pokemon.url}/>
     ));
 
     return (

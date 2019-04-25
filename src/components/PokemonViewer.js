@@ -4,11 +4,9 @@ export default class PokemonViewer extends Component {
   state = {
     pokemon: {},
     isLoaded: false,
-    pokeId: ''
   }
 
   componentDidUpdate(prevProps,prevState){
-    console.log('component updated')
     if (prevState.pokemon === this.state.pokemon) {
       console.log('component update if equal to prevent infinite loop')
       fetch('https://pokeapi.co/api/v2/pokemon/' + this.props.pokeId)
@@ -17,11 +15,14 @@ export default class PokemonViewer extends Component {
         pokemon => this.setState({ pokemon: pokemon, isLoaded: true }),
         error => console.log(error)
       )
+    } else {
+      console.log('no calls made')
     }
   }
 
   shouldComponentUpdate(nextProps, nextState){
-    if (nextProps.pokeId === this.props.pokeId) {
+    console.log(nextProps.pokeId , this.state.pokemon.id)
+    if (nextProps.pokeId === this.state.pokemon.id) {
       console.log('Should component false')
       return false
     }
