@@ -9,6 +9,7 @@ export default class PokemonViewer extends Component {
   componentDidUpdate(prevProps,prevState){
     if (prevState.pokemon === this.state.pokemon) {
       console.log('component update if equal to prevent infinite loop')
+      console.log('--------------------')
       fetch('https://pokeapi.co/api/v2/pokemon/' + this.props.pokeId)
       .then( pokemon => pokemon.json())
       .then(
@@ -17,11 +18,11 @@ export default class PokemonViewer extends Component {
       )
     } else {
       console.log('no calls made')
+      console.log('--------------------')
     }
   }
 
   shouldComponentUpdate(nextProps, nextState){
-    console.log(nextProps.pokeId , this.state.pokemon.id)
     if (nextProps.pokeId === this.state.pokemon.id) {
       console.log('Should component false')
       return false
@@ -32,9 +33,9 @@ export default class PokemonViewer extends Component {
 
   componentDidMount(){
     console.log('mounted')
-    this.setState({
-      pokeId: this.props.pokeId
-    })
+    // this.setState({
+    //   pokeId: this.props.pokeId
+    // })
   }
 
 

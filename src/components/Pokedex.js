@@ -23,7 +23,6 @@ export default class Pokedex extends Component {
 
   choosePokemon = (val) => {
     console.log(val)
-    console.log('clicked')
       this.setState({
         chosenPokemon: val
       })
