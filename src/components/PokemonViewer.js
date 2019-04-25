@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 export default class PokemonViewer extends Component {
   state = {
     pokemon: {},
-    isLoaded: false
+    isLoaded: false,
+    pokeId: ''
   }
 
   componentDidUpdate(prevProps,prevState){
@@ -20,12 +21,19 @@ export default class PokemonViewer extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState){
-    console.log('Should component update')
-    if (nextProps.pokemon === this.state.pokemon) {
+    if (nextProps.pokeId === this.props.pokeId) {
       console.log('Should component false')
       return false
     }
+    console.log('Should component true')
     return true
+  }
+
+  componentDidMount(){
+    console.log('mounted')
+    this.setState({
+      pokeId: this.props.pokeId
+    })
   }
 
 
