@@ -39,7 +39,7 @@ export default class PokemonViewer extends Component {
   }
 
   _loadPokemonData = async() => {
-    this.setState({  isLoaded: false })
+    this.setState({ isLoaded: false })
     try {
       let res = await fetch('https://pokeapi.co/api/v2/pokemon/' + this.props.pokeId )
       let pokemonInfo = await res.json()
@@ -59,8 +59,10 @@ export default class PokemonViewer extends Component {
 
       pokemonInfo.evolution = evolutionChain;
 
-      this.setState({ pokemon : pokemonInfo, isLoaded: true })
-      
+      setTimeout(() => {
+        this.setState({ pokemon : pokemonInfo, isLoaded: true })
+      }, 700);
+
     } catch(error) {
       console.log(error)
     }
