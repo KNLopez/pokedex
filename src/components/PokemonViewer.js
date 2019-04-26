@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import PokemonViewerStats from './PokemonViewerStats'
+import { ReactComponent as Pokeball }  from '../pokeball.svg'
+
 export default class PokemonViewer extends Component {
 
   state = {
@@ -61,7 +63,7 @@ export default class PokemonViewer extends Component {
             </div>
             {statBars}
           </div>
-          : 'Choose a Pokemon'}
+          : <div className="pokebal-loader"><Pokeball /><h4>COOSE A POKEMON</h4></div>}
       </div>
     )
   }
