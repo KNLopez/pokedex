@@ -9,10 +9,26 @@
   min-height: 100vh;
 }
 
+body {
+  background: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/bfe223cd-7af1-4610-8c78-fd850a53fc8b/d46to3e-261639c0-d441-4f33-950f-3fb48f3bc7ee.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2JmZTIyM2NkLTdhZjEtNDYxMC04Yzc4LWZkODUwYTUzZmM4YlwvZDQ2dG8zZS0yNjE2MzljMC1kNDQxLTRmMzMtOTUwZi0zZmI0OGYzYmM3ZWUucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.AocB0YmOrnQ_NBYd0mayO-PTqHfjIv9uf-BxD5jWaPg');
+  background-size: cover;
+}
+
+body:after{
+  content: ' ';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(255,255,255,0.3);
+  z-index: -1;
+}
+
 .pokedex:before{
   content: " ";
   width: 390px;
-  background: #a82a1b;
+  background: #e74c3c;
   position: absolute;
   top: -70px;
   left: 0;
@@ -24,7 +40,7 @@
   position: relative;
   border-radius: 0 10px 10px 10px;
   width: 800px;
-  background: #e74c3c;
+  background: #da3f2e;
   display: flex;
   padding: 20px;
   min-height: 500px;
@@ -297,3 +313,74 @@ span.steel {
     opacity: 0;
   }
 }
+
+.pokedex-header{
+  position: absolute;
+  height: 70px;
+  width: auto;
+  z-index: 4;
+  top: -70px;
+  padding: 10px;
+  display: flex;
+}
+
+.pokedex-header .blue-dot{
+  height: 50px;
+  width: 50px;
+  border-radius: 30px;
+  background: #eee;
+  z-index: 2;
+  position: relative;
+}
+.pokedex-header .blue-dot:before{
+  content: ' ';
+  height: 40px;
+  width: 40px;
+  border-radius: 30px;
+  background: #7db9e8; /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #7db9e8 0%, #00a2ff 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #7db9e8 0%,#00a2ff 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #7db9e8 0%,#00a2ff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#00a2ff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.pokedex-header .blue-dot:after{
+  content: ' ';
+  height: 12px;
+  width: 12px;
+  border-radius: 30px;
+  background: rgb(178, 227, 255);
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+
+
+.mini-dots {
+  display: flex;
+  margin-left: 10px;
+}
+
+.dot{
+  margin: 5px;
+  height: 17px;
+  width: 17px;
+  border-radius: 10px;
+  background: grey;
+  border: 2px solid rgb(177, 52, 52);
+}
+
+.dot.yellow {
+  background: #feca57;
+}
+.dot.green {
+  background: #1dd1a1;
+}
+.dot.red {
+  background: #ee5253;
+}
+
+

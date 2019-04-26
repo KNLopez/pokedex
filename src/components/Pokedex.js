@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PokemonList from './PokemonList'
 import PokemonViewer from './PokemonViewer'
 import PokedexControls from './PokedexControls'
+import Pokeheader from './Pokeheader'
 
 export default class Pokedex extends Component {
   state = {
@@ -25,7 +26,7 @@ export default class Pokedex extends Component {
   render() {
     return (
       <div className="pokedex">
-        {/* <PokedexHeader /> */}
+        <Pokeheader />
         <PokemonList
           pokemon={this.state.pokemon}
           choosePokemon={(val) => this.choosePokemon(val)}
