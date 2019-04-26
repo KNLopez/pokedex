@@ -35,7 +35,7 @@
   flex: 1;
   margin-right: 20px;
   height: 395px;
-  background: white;
+  background: #eee;
   border-radius: 5px;
 }
 
@@ -44,7 +44,7 @@
   display: grid;
   grid-template-columns: repeat(2,1fr);
   transition: all .3s ease-in;
-  background: white;
+  background: #eee;
 }
 
 .pokemon {
@@ -54,7 +54,7 @@
 }
 
 .pokemon:hover{
-  background: #eee;
+  background: #ddd;
 }
 
 .pokemon-viewer {
@@ -257,4 +257,43 @@ span.steel {
 	transform: rotate(135deg) skewY(-45deg) scale(.707,1.414) translate(50%);
 }
 
-
+.container-center {
+  width: 100%;
+  height: 396px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid rgb(219, 74, 74);
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 28px;
+    left: 28px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: -1px;
+    left: -1px;
+    width: 58px;
+    height: 58px;
+    opacity: 0;
+  }
+}
