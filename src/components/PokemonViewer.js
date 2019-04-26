@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PokemonViewerStats from './PokemonViewerStats'
 import { ReactComponent as Pokeball }  from '../pokeball.svg'
+import PokemonEvolution from './PokemonEvolution'
+// import Loader from './Loader'
 
 export default class PokemonViewer extends Component {
 
@@ -10,15 +12,12 @@ export default class PokemonViewer extends Component {
   }
 
   componentDidUpdate(prevProps,prevState){
-    if (prevState.pokemon === this.state.pokemon) {
+    if (prevState.pokemon === this.state.pokemon && this.state.isLoaded) {
       console.log('component update conditional to prevent infinite loop')
       console.log('--------------------')
-      fetch('https://pokeapi.co/api/v2/pokemon/' + this.props.pokeId)
-      .then( pokemon => pokemon.json())
-      .then(
-        pokemon => {this.setState({ pokemon: pokemon, isLoaded: true })},
-        error => console.log(error)
-      )
+
+      this._loadPokemonData()
+
     } else {
       console.log('no calls made')
       console.log('--------------------')
@@ -35,9 +34,37 @@ export default class PokemonViewer extends Component {
   }
 
   componentDidMount(){
-    console.log('mounted')
+    // console.log('mounted')
+    this._loadPokemonData()
   }
 
+  _loadPokemonData = async() => {
+    this.setState({  isLoaded: false })
+    try {
+      let res = await fetch('https://pokeapi.co/api/v2/pokemon/' + this.props.pokeId )
+      let pokemonInfo = await res.json()
+      let species = await fetch(pokemonInfo.species.url)
+      let speciesInfo = await species.json()
+      let evolution = await fetch(speciesInfo.evolution_chain.url)
+      let evolutionInfo = await evolution.json()
+      let evolutionChain = []
+      let evoChain = evolutionInfo.chain
+
+      do {
+        evolutionChain.push({
+          "species_name": evoChain.species.name,
+        });
+        evoChain = evoChain['evolves_to'][0]
+      } while (evoChain && evoChain.hasOwnProperty('evolves_to'))
+
+      pokemonInfo.evolution = evolutionChain;
+
+      this.setState({ pokemon : pokemonInfo, isLoaded: true })
+      
+    } catch(error) {
+      console.log(error)
+    }
+  }
 
   render() {
     let statBars, typeSpan
@@ -54,16 +81,21 @@ export default class PokemonViewer extends Component {
       <div className="pokemon-viewer">
         { this.state.isLoaded ?
           <div className="pokemon-details-container">
-            <img
-              alt={this.state.pokemon.name}
-              src= {this.state.pokemon.sprites.front_default} />
-            <h3>{this.state.pokemon.name}</h3>
+            <div className="pokemon-detail-top">
+              <div className="pokemon-detail-top__info">
+                <h3>{this.state.pokemon.name}</h3>
+                <img
+                  alt={this.state.pokemon.name}
+                  src={this.state.pokemon.sprites.front_default} />
+              </div>
+              <PokemonEvolution evolution={this.state.pokemon.evolution}/>
+            </div>
             <div className="type-container">
               {typeSpan}
             </div>
             {statBars}
           </div>
-          : <div className="pokebal-loader"><Pokeball /><h4>CHOOSE A POKEMON</h4></div>}
+          : <div className="pokebal-loader"><Pokeball /></div>}
       </div>
     )
   }

@@ -7,7 +7,8 @@ import Pokeheader from './Pokeheader'
 export default class Pokedex extends Component {
   state = {
     isLoaded: false,
-    translate: 0
+    translate: 0,
+    chosenPokemon: 1
   }
 
   choosePokemon = (val) => {
